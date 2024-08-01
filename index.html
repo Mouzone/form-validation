@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <form novalidate>
+            <div class="section">
+                <label for="email"> Email: </label>
+                <input type="email" id="email" required>
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <div class="section">
+                <label for="country"> Country: </label>
+                <input type="text" id="country" required>
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <div class="section">
+                <label for="zip-code"> ZIP Code: </label>
+                <input type="text" id="zip-code" minlength="5" maxlength="5" required>
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <div class="section">
+                <label for="password"> Password: </label>
+                <input type="password" id="password" required>
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <div class="section">
+                <label for="password-confirmed"> Confirm Password: </label>
+                <input type="password" id="password-confirmed" required>
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <button type="submit"> Submit </button>
+        </form>
+        <script src="script.js"></script>
+    </body>
+</html>
