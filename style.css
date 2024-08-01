@@ -9,7 +9,13 @@ form {
     display: flex;
     flex-direction: column;
     margin-top: 200px;
+    align-content: center;
     gap: 20px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
 }
 
 /* This is our style for the invalid fields */

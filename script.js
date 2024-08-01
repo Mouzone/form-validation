@@ -7,11 +7,11 @@ const zip_code = document.getElementById("zip-code")
 const password = document.getElementById("password")
 const password_confirmed = document.getElementById("password-confirmed")
 
-const email_error = document.querySelector("#email + .error")
-const country_error = document.querySelector("#country + .error")
-const zip_code_error = document.querySelector("#zip-code + .error")
-const password_error = document.querySelector("#password + .error")
-const password_confirmed_error = document.querySelector("#password-confirmed + .error")
+const email_error = document.getElementById("email-error")
+const country_error = document.getElementById("country-error")
+const zip_code_error = document.getElementById("zip-code-error")
+const password_error = document.getElementById("password-error")
+const password_confirmed_error = document.getElementById("password-confirmed-error")
 
 
 form.addEventListener("submit", event => {
