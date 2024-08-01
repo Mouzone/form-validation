@@ -26,18 +26,16 @@ form.addEventListener("submit", event => {
         showZipError()
         event.preventDefault()
     }
-    // else if (!password.validity.valid) {
-    //     showPasswordError()
-    //     event.preventDefault()
-    // }
+    else if (!password.validity.valid || !/[^a-zA-Z0-9]/.test(password.value) || password.length <= 12) {
+        showPasswordError()
+        event.preventDefault()
+    }
     // else if (!password_confirmed.validity.valid) {
     //     showPasswordConfError()
     //     event.preventDefault()
     // }
-    // else if () {
-    // compare passwords
-    // } else {
-    // //     submit
+    // else {
+    //     submit
     // }
 })
 
@@ -95,4 +93,24 @@ function showZipError() {
         zip_code_error.textContent = "Enter a valid Zipcode"
     }
     zip_code_error.classList.add("active")
+}
+
+password.addEventListener("input", event => {
+    if (password.validity.valid && /[^a-zA-Z0-9]/.test(password.value) && password.value.length >= 12) {
+        password_error.textContent = ""
+        password_error.classList.remove("active")
+    } else {
+        showPasswordError()
+    }
+})
+
+function showPasswordError() {
+    if (password.validity.valueMissing) {
+        password_error.textContent = "You need to enter a Password"
+    } else if (password.value.length <= 12) {
+        password_error.textContent = "Password Length must be at least 12 characters"
+    } else if (!/[^a-zA-Z0-9]/.test(password.value)) {
+        password_error.textContent = "You must include special characters"
+    }
+    password_error.classList.add("active")
 }
