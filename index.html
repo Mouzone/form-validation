@@ -21,7 +21,7 @@
 
             <div class="section">
                 <label for="zip-code"> ZIP Code: </label>
-                <input type="text" id="zip-code" minlength="5" maxlength="5" required>
+                <input type="text" id="zip-code" pattern="\d{5}(-\d{4})?" minlength="5" maxlength="10" required>
                 <span class="error" aria-live="polite"></span>
             </div>
 

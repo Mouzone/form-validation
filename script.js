@@ -9,7 +9,7 @@ const password_confirmed = document.getElementById("password-confirmed")
 
 const email_error = document.querySelector("#email + .error")
 const country_error = document.querySelector("#country + .error")
-const zip_code_error = document.querySelector("#zip_code + .error")
+const zip_code_error = document.querySelector("#zip-code + .error")
 const password_error = document.querySelector("#password + .error")
 const password_confirmed_error = document.querySelector("#password-confirmed + .error")
 
@@ -22,9 +22,7 @@ form.addEventListener("submit", event => {
         showCountryError()
         event.preventDefault()
     }
-    else if (!zip_code.validity.valid) {
-        // validate for digits
-        // validate for length
+    else if (!zip_code.validity.valid || !/^\d{5}(-\d{4})?$/.test(zip_code.value)) {
         showZipError()
         event.preventDefault()
     }
@@ -64,7 +62,7 @@ function showEmailError() {
 // todo: code country input as a dropdown menu
 country.addEventListener("input", event => {
     if (country.validity.valid && valid_countries.includes(country.value)) {
-        country_error.textContent = "";
+        country_error.textContent = ""
         country_error.classList.remove("active")
     } else {
         showCountryError()
@@ -75,10 +73,26 @@ const valid_countries = ["USA", "Canada", "Mexico"]
 function showCountryError() {
     if (country.validity.valueMissing) {
         country_error.textContent = "You need to enter a country.";
-    } else if (!(valid_countries.includes(country.value))) {
-        console.log(country.value)
-        console.log(valid_countries)
-        country_error.textContent = "Enter a valid country";
+    } else if (!valid_countries.includes(country.value)) {
+        country_error.textContent = "Enter a valid country"
     }
     country_error.classList.add("active")
+}
+
+zip_code.addEventListener("input", event => {
+    if (zip_code.validity.valid && /^\d{5}(-\d{4})?$/.test(zip_code.value) && [5,10].includes(zip_code.value.length)) {
+        zip_code_error.textContent = ""
+        zip_code_error.classList.remove("active")
+    } else {
+        showZipError()
+    }
+})
+
+function showZipError() {
+    if (zip_code.validity.valueMissing) {
+        zip_code_error.textContent = "You need to enter a Zipcode.";
+    } else if (!/^\d{5}(-\d{4})?$/.test(zip_code.value) || ![5,10].includes(zip_code.value.length)) {
+        zip_code_error.textContent = "Enter a valid Zipcode"
+    }
+    zip_code_error.classList.add("active")
 }
