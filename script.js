@@ -30,10 +30,10 @@ form.addEventListener("submit", event => {
         showPasswordError()
         event.preventDefault()
     }
-    // else if (!password_confirmed.validity.valid) {
-    //     showPasswordConfError()
-    //     event.preventDefault()
-    // }
+    else if (!password_confirmed.validity.valid || password.value !== password_confirmed.value) {
+        showPasswordConfError()
+        event.preventDefault()
+    }
     // else {
     //     submit
     // }
@@ -113,4 +113,20 @@ function showPasswordError() {
         password_error.textContent = "You must include special characters"
     }
     password_error.classList.add("active")
+}
+
+password_confirmed.addEventListener("input", event => {
+    if (password_confirmed.value === password.value) {
+        password_confirmed_error.textContent = ""
+        password_confirmed_error.classList.remove("active")
+    } else {
+        showPasswordConfError()
+    }
+})
+
+function showPasswordConfError() {
+    if (password_confirmed.value !== password_confirmed_error.value) {
+        password_confirmed_error.textContent = "Passwords do not match"
+    }
+    password_confirmed_error.classList.add("active")
 }
